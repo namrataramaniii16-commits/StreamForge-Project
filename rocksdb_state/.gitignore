@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+.tools/
+
+# Virtual Environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# RocksDB (agar runtime DB generate ho)
+*.sst
+*.ldb
+MANIFEST-*
+CURRENT
+LOCK
+LOG
+LOG.old.*
+

@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Tools
+.tools/
+
+# Virtual Environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# RocksDB
+*.sst
+*.ldb
+MANIFEST-*
+CURRENT
+LOCK
+LOG
+LOG.old.*
