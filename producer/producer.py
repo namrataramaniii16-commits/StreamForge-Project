@@ -29,7 +29,7 @@ try:
     while True:
         data = {
             "truck_id": f"TRUCK_{random.randint(1, 10):03}",
-            "temperature": round(random.uniform(20, 40), 2),
+            "temperature": round(random.uniform(-10, 40), 2),
             "timestamp": datetime.now().isoformat()
         }
 
@@ -51,4 +51,4 @@ except KeyboardInterrupt:
 
 finally:
     producer.flush()
-    print("Producer closed successfully.")
+    print("Producer closed successfully.")   
