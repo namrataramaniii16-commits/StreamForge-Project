@@ -1,14 +1,9 @@
-__pycache__/
-*.pyc
-.vscode/
 # Python
 __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
 *.pyc
-
-# Tools
 .tools/
 
 # Virtual Environments
@@ -23,7 +18,7 @@ env/
 # Logs
 *.log
 
-# RocksDB
+# RocksDB (agar runtime DB generate ho)
 *.sst
 *.ldb
 MANIFEST-*
@@ -31,3 +26,4 @@ CURRENT
 LOCK
 LOG
 LOG.old.*
+

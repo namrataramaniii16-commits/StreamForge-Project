@@ -1,0 +1,17 @@
+Metadata-Version: 2.4
+Name: streamforge-rocksdb-state
+Version: 0.1.0
+Summary: RocksDB State Storage module for StreamForge
+Author: StreamForge Team
+License: MIT
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: python-rocksdb>=0.7.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.4.0; extra == "dev"
+Requires-Dist: black>=23.7.0; extra == "dev"
+Requires-Dist: isort>=5.12.0; extra == "dev"
+Requires-Dist: ruff>=0.0.285; extra == "dev"
+Requires-Dist: mypy>=1.5.0; extra == "dev"
+Dynamic: license-file
