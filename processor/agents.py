@@ -8,6 +8,7 @@ from rocksdb_state.rocksdb_state.aggregation.aggregator import AggregationUpdate
 import time
 from datetime import datetime
 
+
 def get_window_boundaries(timestamp_str: str, window_size_ms: int = 10000):
     """Calculates window start and end (e.g., 10-second windows)."""
     try:
@@ -16,10 +17,16 @@ def get_window_boundaries(timestamp_str: str, window_size_ms: int = 10000):
         timestamp_ms = int(dt.timestamp() * 1000)
     except Exception:
         timestamp_ms = int(time.time() * 1000)
-    
+
     window_start = (timestamp_ms // window_size_ms) * window_size_ms
     window_end = window_start + window_size_ms
     return window_start, window_end
+
+
+def filter_event(truck):
+    """Allow only trucks with positive temperature."""
+    return truck.temperature > 0
+
 
 @app.agent(truck_topic)
 async def process_truck_data(stream):
@@ -27,28 +34,42 @@ async def process_truck_data(stream):
     Consume truck telemetry messages.
     """
     async for truck in stream:
+
+        # Filter stage
+        if not filter_event(truck):
+            print(f"Filtered {truck.truck_id} | Temperature: {truck.temperature}")
+            continue
+
+        # Map stage
         event = {
             "truck_id": truck.truck_id,
             "temperature": truck.temperature,
         }
-        
+
+        # Existing windowing logic
         w_start, w_end = get_window_boundaries(truck.timestamp)
         event["window_start"] = w_start
         event["window_end"] = w_end
-        
+
         registry_key = f"{truck.truck_id}:{w_start}:{w_end}"
-        
+
         # Load from RocksDB Registry
         current_state = app.rocksdb_registry.get(registry_key)
-        
+
         try:
             # Aggregate
             new_state = AggregationUpdateAPI.process_event(event, current_state)
-            
+
             # Persist memory and disk
             app.rocksdb_registry[registry_key] = new_state
             app.rocksdb_crud.put_state(new_state)
-            
-            print(f"Aggregated {truck.truck_id} | Window: {w_start} | Sum: {new_state.sum_temperature:.2f} | Count: {new_state.count} | Avg: {new_state.average_temperature:.2f}")
+
+            print(
+                f"Aggregated {truck.truck_id} | Window: {w_start} | "
+                f"Sum: {new_state.sum_temperature:.2f} | "
+                f"Count: {new_state.count} | "
+                f"Avg: {new_state.average_temperature:.2f}"
+            )
+
         except Exception as e:
-            print(f"Aggregation Failed for {truck.truck_id}: {e}")
+            print(f"Aggregation Failed for {truck.truck_id}: {e}")
