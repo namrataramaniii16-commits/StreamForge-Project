@@ -1,6 +1,3 @@
-__pycache__/
-*.pyc
-.vscode/
 # Python
 __pycache__/
 *.py[cod]
@@ -8,17 +5,18 @@ __pycache__/
 *.pyd
 *.pyc
 
-# Tools
-.tools/
-
-# Virtual Environments
-.venv/
+# Environment
+.env
 venv/
+.venv/
 env/
 
 # IDE
 .vscode/
 .idea/
+
+# Tools
+.tools/
 
 # Logs
 *.log
@@ -31,3 +29,10 @@ CURRENT
 LOCK
 LOG
 LOG.old.*
+
+# Node / React
+node_modules/
+frontend/node_modules/
+
+dist/
+frontend/dist/

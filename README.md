@@ -1,6 +1,6 @@
 # StreamForge
 
-StreamForge is a scalable backend project that demonstrates real-time event streaming, asynchronous message processing, and containerized deployment using Python, Apache Kafka, and Docker.
+StreamForge is a scalable backend project that demonstrates real-time event streaming, asynchronous message processing, and containerized deployment using Python, Apache Kafka, Docker, FastAPI, and React.
 
 ## Features
 
@@ -9,59 +9,76 @@ StreamForge is a scalable backend project that demonstrates real-time event stre
 - Dockerized Kafka deployment
 - Kafka Producer for publishing telemetry data
 - Kafka Consumer for reading telemetry data
+- FastAPI backend APIs
+- React monitoring dashboard
 
 ## Tech Stack
 
 - Python
 - Apache Kafka
 - Docker
+- FastAPI
+- React
 - Confluent Kafka
 - kafka-python
 
 ## Project Structure
 
+```
 StreamForge-Project/
+├── app/
+├── frontend/
 ├── docker/
 ├── producer/
 ├── consumer/
-├── stream-processing/
-├── backend/
-├── dashboard/
+├── processing/
+├── processor/
+├── docs/
 ├── requirements.txt
 └── README.md
+```
 
-## Getting Started
+## Installation
 
-### Clone the repository
-
-git clone <repository-url>
-cd StreamForge-Project
-
-### Install dependencies
-
+```bash
 pip install -r requirements.txt
+```
 
-### Start Kafka
+## Start Kafka
 
+```bash
 cd docker
 docker compose up -d
+```
 
-### Run the Producer
+## Run Producer
 
+```bash
 python producer/producer.py
+```
 
-### Run the Consumer
+## Run Consumer
 
+```bash
 python consumer/consumer.py
+```
 
-## Sample Output
+## Run FastAPI
 
-### Producer
+```bash
+uvicorn app.main:app --reload
+```
 
-Sent: {'truck_id': 'TRUCK_001', 'temperature': 31.42}
+Open:
 
-### Consumer
+```
+http://127.0.0.1:8000/docs
+```
 
-Truck ID    : TRUCK_001
-Temperature : 31.42 °C
-Timestamp   : 2026-07-21T22:58:46
+## Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
