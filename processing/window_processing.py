@@ -1,4 +1,4 @@
-from rolling_average import calculate_average
+from processing.rolling_average import calculate_average
 window = []
 
 WINDOW_SIZE = 3  # Maximum size of sliding window
