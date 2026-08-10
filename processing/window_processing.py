@@ -5,6 +5,12 @@ WINDOW_SIZE = 3  # Maximum size of sliding window
 
 def add_temperature(temp):
     window.append(temp)
+    
+
+    if len(window) > WINDOW_SIZE:
+        window.pop(0)
+
+    return window.copy(), calculate_average(window)
 
     if len(window) > WINDOW_SIZE:
         window.pop(0)    # Remove oldest temperature
