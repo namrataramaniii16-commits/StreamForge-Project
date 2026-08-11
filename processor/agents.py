@@ -51,4 +51,9 @@ async def process_truck_data(stream):
             
             print(f"Aggregated {truck.truck_id} | Window: {w_start} | Sum: {new_state.sum_temperature:.2f} | Count: {new_state.count} | Avg: {new_state.average_temperature:.2f}")
         except Exception as e:
-            print(f"Aggregation Failed for {truck.truck_id}: {e}")
+            print(
+                f"Aggregation Failed | "
+                f"Truck: {truck.truck_id} | "
+                f"Window: {w_start}-{w_end} | "
+                f"Error: {e}"
+            )
