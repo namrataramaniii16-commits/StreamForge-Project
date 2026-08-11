@@ -31,6 +31,13 @@ class TestWindowProcessing(unittest.TestCase):
         self.assertEqual(current_window, [20, 30, 40])
         self.assertEqual(average, 30.0)
 
+    def test_window_keeps_latest_values(self):
+        add_temperature(10)
+        add_temperature(20)
+        add_temperature(30)
+        result = add_temperature(40)
 
+        self.assertEqual(result[0], [20, 30, 40])
+        self.assertEqual(result[1], 30.0)
 if __name__ == "__main__":
     unittest.main()
