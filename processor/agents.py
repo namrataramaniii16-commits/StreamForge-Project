@@ -21,16 +21,19 @@ def get_window_boundaries(timestamp_str: str, window_size_ms: int = 10000):
     window_end = window_start + window_size_ms
     return window_start, window_end
 
+def map_truck_event(truck):
+    return {
+        "truck_id": truck.truck_id,
+        "temperature": truck.temperature,
+    }
+
 @app.agent(truck_topic)
 async def process_truck_data(stream):
     """
     Consume truck telemetry messages.
     """
     async for truck in stream:
-        event = {
-            "truck_id": truck.truck_id,
-            "temperature": truck.temperature,
-        }
+        event = map_truck_event(truck)
         
         w_start, w_end = get_window_boundaries(truck.timestamp)
         event["window_start"] = w_start
