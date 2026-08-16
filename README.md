@@ -92,6 +92,24 @@ Open:
 ```
 http://127.0.0.1:8000/docs
 ```
+## API Endpoints
+
+The FastAPI backend provides the following endpoints:
+
+| Endpoint | Description |
+|---|---|
+| `/` | Returns the backend status message |
+| `/health` | Checks whether the backend is healthy |
+| `/workers` | Returns worker information and status |
+| `/partitions` | Returns Kafka partition assignments |
+| `/metrics` | Returns streaming metrics such as events per second, lag, and uptime |
+| `/topology` | Returns the StreamForge processing topology |
+| `/logs` | Returns recent system activity logs |
+
+FastAPI interactive documentation is available at:
+
+```text
+http://127.0.0.1:8000/docs
 
 ## Frontend
 
