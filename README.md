@@ -45,16 +45,39 @@ StreamForge-Project/
 ├── requirements.txt
 └── README.md
 ```
-## System Workflow
 
-StreamForge follows a real-time streaming architecture:
+## System Architecture
 
+StreamForge follows a real-time event streaming architecture:
+
+```text
+Truck Telemetry
+      │
+      ▼
+   Producer
+      │
+      ▼
+ Apache Kafka
+      │
+      ▼
+   Consumer
+      │
+      ▼
+ Stream Processing
+      │
+      ▼
+   FastAPI
+      │
+      ▼
+ React Dashboard
+ 
 1. The Producer generates truck telemetry data.
 2. Apache Kafka receives and streams the telemetry messages.
 3. The Consumer reads messages from the Kafka topic.
 4. The processing components handle the incoming stream data.
 5. FastAPI exposes monitoring information through REST APIs.
 6. The React dashboard displays the system and fleet information through a user-friendly interface.
+```
 
 ## Installation
 
