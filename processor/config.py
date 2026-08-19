@@ -1,12 +1,22 @@
 """
-Configuration settings for the StreamForge Processor.
-This file stores all configurable values used by the Faust application.
+StreamForge processor configuration.
 """
 
-# Kafka Configuration
 KAFKA_BROKER = "localhost:9092"
+
 INPUT_TOPIC = "truck-telemetry"
 
-# Faust Configuration
+CHANGELOG_TOPIC = "streamforge-changelog"
+
+CONSUMER_GROUP = "streamforge-workers"
+
 APP_NAME = "streamforge-processor"
-CONSUMER_GROUP = "streamforge-processor"
+
+# Requirement: 5-minute window
+WINDOW_SIZE_MS = 5 * 60 * 1000
+
+# Requirement: 20 workers
+TOTAL_WORKERS = 20
+
+# Processor metrics server
+METRICS_PORT = 8001

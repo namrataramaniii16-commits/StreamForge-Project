@@ -12,14 +12,6 @@ StreamForge is a scalable backend project that demonstrates real-time event stre
 - FastAPI backend APIs
 - React monitoring dashboard
 
-## Problem Statement
-
-Modern transportation systems generate a large amount of real-time telemetry data from vehicles, including location, speed, fuel level, temperature, and operational status. Processing and monitoring this continuously generated data can become difficult when using traditional request-based systems.
-
-StreamForge addresses this problem by providing a real-time event streaming and monitoring system. Truck telemetry data is published through Apache Kafka, consumed and processed asynchronously, and exposed through FastAPI APIs. A React-based dashboard provides a centralized interface for monitoring the system and viewing real-time operational information.
-
-The project demonstrates how a distributed streaming architecture can be used to handle continuous event data efficiently while providing APIs and a monitoring interface for users.
-
 ## Tech Stack
 
 - Python
@@ -44,39 +36,6 @@ StreamForge-Project/
 ├── docs/
 ├── requirements.txt
 └── README.md
-```
-
-## System Architecture
-
-StreamForge follows a real-time event streaming architecture:
-
-```text
-Truck Telemetry
-      │
-      ▼
-   Producer
-      │
-      ▼
- Apache Kafka
-      │
-      ▼
-   Consumer
-      │
-      ▼
- Stream Processing
-      │
-      ▼
-   FastAPI
-      │
-      ▼
- React Dashboard
- 
-1. The Producer generates truck telemetry data.
-2. Apache Kafka receives and streams the telemetry messages.
-3. The Consumer reads messages from the Kafka topic.
-4. The processing components handle the incoming stream data.
-5. FastAPI exposes monitoring information through REST APIs.
-6. The React dashboard displays the system and fleet information through a user-friendly interface.
 ```
 
 ## Installation
@@ -115,24 +74,6 @@ Open:
 ```
 http://127.0.0.1:8000/docs
 ```
-## API Endpoints
-
-The FastAPI backend provides the following endpoints:
-
-| Endpoint | Description |
-|---|---|
-| `/` | Returns the backend status message |
-| `/health` | Checks whether the backend is healthy |
-| `/workers` | Returns worker information and status |
-| `/partitions` | Returns Kafka partition assignments |
-| `/metrics` | Returns streaming metrics such as events per second, lag, and uptime |
-| `/topology` | Returns the StreamForge processing topology |
-| `/logs` | Returns recent system activity logs |
-
-FastAPI interactive documentation is available at:
-
-```text
-http://127.0.0.1:8000/docs
 
 ## Frontend
 
